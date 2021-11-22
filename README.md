@@ -52,6 +52,10 @@
 
         ![Collection View](README/collection-view.png)
 
+### 3. (선택) Test Code
+- 구현한 기능이 정상 동작하는지 검증하기 위한 테스트 코드 작성
+- Unit Test, Spring Boot Integration Test 활용
+
 
 ## 제출 방법
 
