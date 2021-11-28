@@ -1,12 +1,10 @@
 package com.coupang.jayden.controller;
 
-import com.coupang.jayden.model.PostImageDto;
 import com.coupang.jayden.service.CatPhotoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -21,7 +19,7 @@ public class CatPhotoController {
     private final CatPhotoService catPhotoService;
 
     @GetMapping("/get/cat-photos")
-    public String getCatPhotos(@RequestParam(required = false) Long num, Model model) {
+    public String getCatPhotos(@RequestParam(required = false, defaultValue = "0") Long num, Model model) {
         model.addAttribute("catTitle", "Cat Photos");
         model.addAttribute("images", catPhotoService.getImages(num));
         return "cat.html";

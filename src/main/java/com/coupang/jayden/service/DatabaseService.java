@@ -25,7 +25,6 @@ public class DatabaseService {
                 .map(CatImage::new)
                 .collect(Collectors.toList());
         imageRepository.saveAll(images);
-        //imageRepository.deleteSameImages();
     }
 
     public List<CatImageVO> getAllImages() {
