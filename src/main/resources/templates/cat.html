@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+<ul>
+    <li><a th:href="@{/get/cat-photos}">Cat Photos</a></li>
+    <li><a th:href="@{/get/favorites}">Collection</a></li>
+</ul>
+
+<h1>[[${catTitle}]]</h1>
+
+<div th:if="${catTitle} == 'Cat Photos'">
+    <h2>How many photos?:</h2>
+    <div class="getPhotos">
+        <form action="/get/cat-photos" method="get">
+            <div class="form-group">
+                <label for="num">갯수</label>
+                <input type="text" id="num" name="num">
+            </div>
+            <button type="submit">Get Photos</button>
+        </form>
+    </div>
+
+    <form action="/post/cat-photos" method="post">
+        <button type="submit">Add selected photos to collection</button>
+        <div>
+            <div th:each="url : ${images}">
+                <img width="500" th:src="${url}"/>
+                <input type="checkbox" name="urls" th:value="${url}">
+            </div>
+        </div>
+    </form>
+</div>
+
+<div th:unless="${catTitle} == 'Cat Photos'">
+    <form action="/delete/cat-photos" method="post">
+        <button type="submit">Delete selected collection</button>
+        <div th:each="favorite:${favorites}">
+            <img width="500" th:src="${favorite.url}"/>
+            <input type="checkbox" name="ids" th:value="${favorite.id}">
+        </div>
+    </form>
+</div>
+
+</body>
+</html>
